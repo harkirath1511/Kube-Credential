@@ -5,8 +5,7 @@ import crypto from 'crypto'
 const genToken = async(req : Request, res : Response)=>{
 
     const {name, credential} = req.body;
-    console.log('test!!!')
-    
+
     const existingCr = await Token.findOne({
         credential : credential
     });
@@ -14,10 +13,8 @@ const genToken = async(req : Request, res : Response)=>{
     if(existingCr){
         return res
         .status(409)
-        .json("The credential has already been issued")
+        .json({success : false, message : "The credential has already been issued"})
     };
-
-    console.log("Test!!!!");
     const credentialId = crypto.randomBytes(16).toString("hex");
 
     const newCr = await Token.create({
@@ -29,7 +26,7 @@ const genToken = async(req : Request, res : Response)=>{
     if(!newCr){
         return res
         .status(500)
-        .json("Some issue while registering credential!!!")
+        .json({success : false, message : "Some issue while registering credential!!!"})
     }
 
     return res

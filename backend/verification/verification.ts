@@ -3,11 +3,19 @@ import { Token } from './model.js';
 
 const verifyCr = async(req : Request, res : Response) =>{
     
-    const {credential} = req.body;
+    const {credentialId} = req.body;
 
     const findToken = await Token.findOne({
-        credential
+        credentialId
     });
+
+    const result = {
+        created : findToken?.createdAt,
+        credential : findToken?.credential,
+        credentialId,
+        name : findToken?.name,
+        workerId : findToken?.workerId
+    }
 
     if(!findToken){
         return res
@@ -17,7 +25,7 @@ const verifyCr = async(req : Request, res : Response) =>{
 
     return res
     .status(200)
-    .json({success : true, findToken, message : "Credential fetched successfully!"})
+    .json({success : true, result, message : "Credential fetched successfully!"})
 
 }
 

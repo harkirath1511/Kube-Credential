@@ -18,13 +18,15 @@ const Verify = () => {
     setIsVerified(null);
     
     try {
-      const res = await axios.post(import.meta.env.VITE_SERVER_URL, {
+      const res = await axios.post(`http://localhost:8081/verify`, {
         credentialId,
       });
-      setResponse(JSON.stringify(res.data, null, 2));
+      console.log(res)
+      setResponse(JSON.stringify(res.data.result, null, 2));
       setIsVerified(true);
     } catch (err: any) {
-      setResponse("Error: " + err.message);
+      console.log(err);
+      setResponse("Error: " + err.response.data.message);
       setIsVerified(false);
     } finally {
       setIsLoading(false);
