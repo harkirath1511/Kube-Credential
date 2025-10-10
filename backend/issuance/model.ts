@@ -17,7 +17,6 @@ const tokenModel = new mongoose.Schema({
     workerId : {
         type : Number,
         required : true,
-        unique : true,
         default : 1
     },
 }, {timestamps : true});

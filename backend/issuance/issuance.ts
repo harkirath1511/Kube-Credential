@@ -23,6 +23,14 @@ const genToken = async(req : Request, res : Response)=>{
         credentialId,
     });
 
+    const response = {
+        name, 
+        credential, 
+        credentialId : newCr.credentialId,
+        createdAt : newCr.createdAt,
+        workerId : newCr.workerId
+    }
+
     if(!newCr){
         return res
         .status(500)
@@ -31,7 +39,7 @@ const genToken = async(req : Request, res : Response)=>{
 
     return res
     .status(200)
-    .json("Credential issued successfully!!")
+    .json({success : true, response, message : "Credential issued successfully!!"})
 }
 
 export {genToken}
