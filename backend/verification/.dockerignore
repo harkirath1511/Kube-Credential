@@ -1,0 +1,40 @@
+# Node modules
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment variables and secrets
+.env
+.env.*
+*.env
+
+# Build artifacts
+dist
+build
+coverage
+
+# Version control
+.git
+.gitignore
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# Docker files (optional, if you don't need them in the build)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Test files
+*.test.js
+*.spec.js
+test
+
+# Logs
+logs
+*.log

@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Issuance service
+  issuance:
+    build:
+      context: ./issuance
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  # Changed back to 8080:8080 as requested
+    env_file:
+      - ./issuance/.env
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+    restart: unless-stopped
+    networks:
+      - credential-network
+    volumes:
+      - issuance-logs:/app/logs
+
+  # Verification service
+  verification:
+    build:
+      context: ./verification
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"  # Changed to 8081:8080 as requested
+    env_file:
+      - ./verification/.env
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+    restart: unless-stopped
+    networks:
+      - credential-network
+    volumes:
+      - verification-logs:/app/logs
+
+networks:
+  credential-network:
+    driver: bridge
+
+volumes:
+  issuance-logs:
+  verification-logs:
