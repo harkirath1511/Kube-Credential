@@ -1,15 +1,15 @@
 import express from 'express'
 import type {Request , Response} from 'express'
 import dotenv from 'dotenv'
-import {connectDB} from './db.js'
-import { genToken } from './issuance.js'
+import {connectDB} from './db/db.js'
+import { genToken } from './controllers/issuance.js'
 import cors from 'cors'
 
 dotenv.config({path : './.env'});
 
 
 
-const app = express();
+export const app = express();
 
 const PORT = process.env.PORT;
 

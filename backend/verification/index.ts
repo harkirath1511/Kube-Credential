@@ -1,14 +1,14 @@
 import express from 'express'
 import type {Request , Response} from 'express'
 import dotenv from 'dotenv'
-import {connectDB} from './db.js'
-import { verifyCr } from './verification.js'
+import {connectDB} from './db/db.js'
+import { verifyCr } from './controllers/verification.js'
 import cors from 'cors'
 
 dotenv.config({path : './.env'});
 
 
-const app = express();
+export const app = express();
 
 const PORT = process.env.PORT;
 

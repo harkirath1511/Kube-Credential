@@ -8,4 +8,8 @@ const connectDB=async()=>{
     });
 }
 
-export {connectDB}
+const closeDatabase = async()=>{
+    console.log("db called!");
+}
+
+export {connectDB, closeDatabase}

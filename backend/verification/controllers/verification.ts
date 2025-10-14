@@ -1,5 +1,5 @@
 import type {Request, Response} from 'express'
-import { Token } from './model.js';
+import { Token } from '../model/model.js';
 
 const verifyCr = async(req : Request, res : Response) =>{
     

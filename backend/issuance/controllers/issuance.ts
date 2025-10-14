@@ -1,10 +1,16 @@
-import { Token } from "./model.js";
+import { Token } from "../model/model.js";
 import type {Request, Response} from 'express'
 import crypto from 'crypto'
 
 const genToken = async(req : Request, res : Response)=>{
 
     const {name, credential} = req.body;
+
+    if(!name || !credential){
+        return res
+        .status(404)
+        .json({success : false, message : "Please provide all fields!"})
+    }
 
     const existingCr = await Token.findOne({
         credential : credential
@@ -13,7 +19,7 @@ const genToken = async(req : Request, res : Response)=>{
     if(existingCr){
         return res
         .status(409)
-        .json({success : false, message : "The credential has already been issued"})
+        .json({success : false, message : "The credential has been already issued"})
     };
     const credentialId = crypto.randomBytes(16).toString("hex");
 
