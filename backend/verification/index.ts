@@ -7,7 +7,6 @@ import cors from 'cors'
 
 dotenv.config({path : './.env'});
 
-
 export const app = express();
 
 const PORT = process.env.PORT;
@@ -16,7 +15,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({extended : true, limit : "20kb"}));
 app.use(cors({
-    origin : 'http://localhost:5173'
+    origin : 'http://locahost:8080'
 }))
 
 app.post('/verify',verifyCr);
@@ -29,5 +28,4 @@ app.listen(PORT, ()=>{
         console.log("Error connecting to db : ",error );
     }
 });
-
 

@@ -7,14 +7,12 @@ import cors from 'cors'
 
 dotenv.config({path : './.env'});
 
-
-
 export const app = express();
 
 const PORT = process.env.PORT;
 
 app.use(cors({
-    origin : 'http://localhost:5173'
+    origin : 'http://localhost:8080'
 }))
 app.use(express.json());
 app.use(express.static("public"));
@@ -30,5 +28,4 @@ app.listen(PORT, ()=>{
         console.log("Error connecting to db : ",error );
     }
 });
-
 

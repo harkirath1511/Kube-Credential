@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-const BASE = process.env.TEST_BASE_URL || 'http://localhost:8081';
+const BASE = process.env.TEST_BASE_URL || 'http:
 const VERIFY_PATH = '/verify';
 
 const validId = process.env.TEST_CREDENTIAL_ID_VALID;
@@ -9,9 +9,9 @@ const invalidId = process.env.TEST_CREDENTIAL_ID_INVALID || `non-existent-${Date
 const maybe = (cond) => (cond ? test : test.skip);
 
 describe('Verification service (running server)', () => {
-  // Increase timeout for slow environments
+  
   beforeAll(() => {
-    // @ts-ignore - available in Jest
+    
     if (typeof jest !== 'undefined' && jest.setTimeout) jest.setTimeout(30000);
   });
 
@@ -35,7 +35,7 @@ describe('Verification service (running server)', () => {
     }
   });
 
-  // Run this only if you provide a real, existing credentialId
+  
   maybe(!!validId)('POST verify returns 200 for a valid credentialId', async () => {
     const res = await request(BASE)
       .post(VERIFY_PATH)

@@ -3,7 +3,6 @@ import { app } from '../index.js';
 import { closeDatabase } from '../db/db.js'; 
 import { jest } from '@jest/globals';
 
-
 jest.mock('../db/db', () => ({
     getCredential: jest.fn(),
     saveCredential: jest.fn(),
@@ -11,7 +10,7 @@ jest.mock('../db/db', () => ({
 }));
 
 describe('Issuance API', () => {
-  // Clean up after all tests
+  
   afterAll(async () => {
     await closeDatabase();
   });
