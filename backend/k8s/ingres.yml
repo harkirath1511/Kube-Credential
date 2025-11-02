@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kube-credential-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /issuance/?(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: issuance-service
+            port:
+              number: 80
+      - path: /verification/?(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: verification-service
+            port:
+              number: 80

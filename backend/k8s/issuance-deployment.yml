@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: issuance-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: issuance
+  template:
+    metadata:
+      labels:
+        app: issuance
+    spec:
+      containers:
+        - name: issuance
+          image: harkirath1511/issuance:latest
+          ports:
+            - containerPort: 8080  # Changed from 5000 to match your server port
+          env:
+            - name: MONGO_URI
+              value: "mongodb+srv://singharkirath1511:waheguru%40123@cluster0.0s4d8yt.mongodb.net/"
+            - name: PORT
+              value: "8080"  # Explicitly set the port
