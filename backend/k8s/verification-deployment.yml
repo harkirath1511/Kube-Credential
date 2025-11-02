@@ -17,6 +17,4 @@ spec:
           image: harkirath1511/verification:latest
           ports:
             - containerPort: 8081
-          env:
-            - name: MONGO_URI
-              value: "mongodb+srv://singharkirath1511:waheguru%40123@cluster0.0s4d8yt.mongodb.net/"
+         
